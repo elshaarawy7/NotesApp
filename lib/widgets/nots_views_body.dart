@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/views/notes_view.dart';
+import 'package:notes_app/widgets/Notes_Item_List_view.dart';
 import 'package:notes_app/widgets/custem_appar.dart';
 
 import 'nots_item.dart';
@@ -9,11 +9,14 @@ class NotsViewsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         CustemAppar(),
+
         SizedBox(height:3,),
-        NotesItem(),
+
+        Expanded(child: NotesItemListView())
+        
       ],
     );
   }

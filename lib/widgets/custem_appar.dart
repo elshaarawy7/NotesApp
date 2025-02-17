@@ -17,7 +17,7 @@ class CustemAppar extends StatelessWidget {
           ),) ,
 
           SizedBox(
-            width:double.infinity,
+            width:220,
             ),
 
           CustemSearchIcon()

@@ -9,7 +9,7 @@ class CustemSearchIcon extends StatelessWidget {
       height: 50,
       width: 50,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.2),
+        color: Colors.grey.withOpacity(.2),
         borderRadius: BorderRadius.circular(16),
       ),
       child: const Center(

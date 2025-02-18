@@ -11,7 +11,7 @@ class EditsNotsViewBody extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
-          SizedBox(height: 50,),
+          SizedBox(height: 30,),
           CustemAppar(
             title: 'Edit Note',
             icon: Icons.check_box_sharp ,

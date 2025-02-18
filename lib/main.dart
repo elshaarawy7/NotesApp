@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.dark ,
+        brightness: Brightness.dark,
       ),
       home:const NotesView()
     );

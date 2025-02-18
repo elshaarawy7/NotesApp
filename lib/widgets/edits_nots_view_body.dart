@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/widgets/custem_appar.dart';
+import 'package:notes_app/widgets/custem_textField.dart';
 
 class EditsNotsViewBody extends StatelessWidget {
   const EditsNotsViewBody({super.key});
@@ -12,10 +13,22 @@ class EditsNotsViewBody extends StatelessWidget {
         children: [
           SizedBox(height: 50,),
           CustemAppar(
-            title: 'Edit',
+            title: 'Edit Note',
             icon: Icons.check_box_sharp ,
+          ) , 
+
+           SizedBox(height: 50,), 
+
+           CustomTextField(
+            hintText: 'Title :', 
+           ) , 
+
+           SizedBox(height: 20,) ,
+            CustomTextField(
+              maxLines: 5,
+            hintText: 'content :', 
+           ) ,
            
-          ) ,
 
           
         ],

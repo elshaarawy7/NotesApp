@@ -9,9 +9,12 @@ class NotsViewsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        CustemAppar(),
+        CustemAppar(
+          title: 'Notes',
+          icon: Icons.search,
+        ),
 
         SizedBox(height:3,),
 

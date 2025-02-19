@@ -1,0 +1,2 @@
+C:/Users/Eng-Elshaarawy/flutter_windows_3.24.5-stable/notes_app/android/app/.cxx/Debug/6m29h4q1/x86/CMakeFiles/edit_cache.dir
+C:/Users/Eng-Elshaarawy/flutter_windows_3.24.5-stable/notes_app/android/app/.cxx/Debug/6m29h4q1/x86/CMakeFiles/rebuild_cache.dir

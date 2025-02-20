@@ -24,7 +24,7 @@ class _AddBatomSheateState extends State<AddBatomSheate> {
         child: BlocConsumer<AddNotesCubit,AddNotesState >(
           listener: ( context,  state) {
             if(state is AddNotesFailur){
-             const print("field is ${state.errMessage}");
+             print("field is ${state.errMessage}");
             } 
 
             if(state is AddNotesSuccess){

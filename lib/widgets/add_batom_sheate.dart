@@ -15,29 +15,32 @@ class _AddBatomSheateState extends State<AddBatomSheate> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddNotesCubit(),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6),
-        child: BlocConsumer<AddNotesCubit, AddNotesState>(
-          listener: (context, state) {
-            if (state is AddNotesFailur) {
-              print("field is ${state.errMessage}");
-            }
+        create: (context) => AddNotesCubit(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6),
+          child: BlocConsumer<AddNotesCubit, AddNotesState>(
+              listener: (context, state) {
+                if (state is AddNotesFailur) {
+                  print("field is ${state.errMessage}");
+                }
 
-            if (state is AddNotesSuccess) {
-              Navigator.pop(context);
-            }
-          },
-          builder: (BuildContext context, AddNotesState state) {
-            return ModalProgressHUD(
-              inAsyncCall: state is AddNotesLoading ? true : false,
-              child: SingleChildScrollView(
-                child: const AddNoetForm(),
-              ),
-            );
-          },
+                if (state is AddNotesSuccess) {
+                  Navigator.pop(context);
+                }
+              },
+              builder: (BuildContext context, AddNotesState state) {  
+              return AbsorbPointer(
+                absorbing: state is AddNotesLoading ? true : false,
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: SingleChildScrollView(
+                    child: AddNoetForm(),
+                  )
+                )
+              );
+              }
+          )
         ),
-      ),
     );
   }
 }

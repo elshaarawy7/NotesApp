@@ -45,21 +45,26 @@ class _AddNoetFormState extends State<AddNoetForm> {
           const SizedBox(
             height: 50,
           ),
-          Custembatton(
-            onTap: () {
-              if (formkey.currentState!.validate()) {
-                formkey.currentState!.save();
-                var noteModal = NoteModal(
-                    titel: tittle!,
-                    subtitle: subtitle!,
-                    date: DateTime.now.toString(),
-                    color: Colors.blueAccent.value ,
+          BlocBuilder<AddNotesCubit,AddNotesState>(
+            builder: (context, state) {
+              return Custembatton(
+                isLoding: state is AddNotesLoading ? true : false,
+                onTap: () {
+                  if (formkey.currentState!.validate()) {
+                    formkey.currentState!.save();
+                    var noteModal = NoteModal(
+                      titel: tittle!,
+                      subtitle: subtitle!,
+                      date: DateTime.now.toString(),
+                      color: Colors.blueAccent.value,
                     );
-                BlocProvider.of<AddNotesCubit>(context).addNote(noteModal);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
+                    BlocProvider.of<AddNotesCubit>(context).addNote(noteModal);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
             },
           ),
           const SizedBox(

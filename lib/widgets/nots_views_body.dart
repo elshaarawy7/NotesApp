@@ -16,8 +16,6 @@ class NotsViewsBody extends StatelessWidget {
           icon: Icons.search,
         ),
 
-        SizedBox(height:3,),
-
         Expanded(child: NotesItemListView())
         
       ],

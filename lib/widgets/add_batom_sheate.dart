@@ -1,78 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:notes_app/add_notes_cuibets/cubit/add_notes_cubit.dart';
+import 'package:notes_app/widgets/add_notes_Form.dart';
 import 'package:notes_app/widgets/custemBatton.dart';
 import 'package:notes_app/widgets/custem_textField.dart';
 
-class AddBatomSheate extends StatelessWidget {
-  const AddBatomSheate({super.key});
+class AddBatomSheate extends StatefulWidget {
+ const  AddBatomSheate({super.key});
+
+  @override
+  State<AddBatomSheate> createState() => _AddBatomSheateState();
+}
+
+class _AddBatomSheateState extends State<AddBatomSheate> {
+ 
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 6),
+    return  Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       child: SingleChildScrollView(
-        child: AddNoetForm(),
+        child: BlocConsumer<AddNotesCubit,AddNotesState >(
+          listener: ( context,  state) {
+            if(state is AddNotesFailur){
+             const print("field is ${state.errMessage}");
+            } 
+
+            if(state is AddNotesSuccess){
+              Navigator.pop(context);
+            }
+            },
+        
+          builder: (BuildContext context, AddNotesState state) {
+            return ModalProgressHUD(
+              inAsyncCall:state is AddNotesLoading ? true : false ,
+              child: const AddNoetForm() ,
+              );
+            },
+          ),
       ),
     );
   }
 }
 
-class AddNoetForm extends StatefulWidget {
-  const AddNoetForm({super.key});
 
-  @override
-  State<AddNoetForm> createState() => _AddNoetFormState();
-}
-
-class _AddNoetFormState extends State<AddNoetForm> {
-  final GlobalKey<FormState> formkey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? tittle, subtitle;
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formkey,
-      autovalidateMode: autovalidateMode,
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          CustomTextField(
-            onSaved: (value) {
-              value = tittle;
-            },
-            hintText: 'Title',
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          CustomTextField(
-            onSaved: (value) {
-              subtitle = value;
-            },
-            maxLines: 5,
-            hintText: 'content',
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-           Custembatton(
-            onTap: () {
-              if(formkey.currentState!.validate()){
-                formkey.currentState!.save();
-              } else{
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {
-                  
-                });
-              }
-            },
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-        ],
-      ),
-    );
-  }
-}

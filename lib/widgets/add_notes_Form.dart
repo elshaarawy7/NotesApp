@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/add_notes_cuibets/cubit/add_notes_cubit.dart';
+import 'package:notes_app/model/note_modal.dart';
 import 'package:notes_app/widgets/custemBatton.dart';
 import 'package:notes_app/widgets/custem_textField.dart';
 
@@ -25,7 +28,7 @@ class _AddNoetFormState extends State<AddNoetForm> {
           ),
           CustomTextField(
             onSaved: (value) {
-              value = tittle;
+              tittle = value;
             },
             hintText: 'Title',
           ),
@@ -42,15 +45,20 @@ class _AddNoetFormState extends State<AddNoetForm> {
           const SizedBox(
             height: 50,
           ),
-           Custembatton(
+          Custembatton(
             onTap: () {
-              if(formkey.currentState!.validate()){
+              if (formkey.currentState!.validate()) {
                 formkey.currentState!.save();
-              } else{
+                var noteModal = NoteModal(
+                    titel: tittle!,
+                    subtitle: subtitle!,
+                    date: DateTime.now.toString(),
+                    color: Colors.blueAccent.value ,
+                    );
+                BlocProvider.of<AddNotesCubit>(context).addNote(noteModal);
+              } else {
                 autovalidateMode = AutovalidateMode.always;
-                setState(() {
-                  
-                });
+                setState(() {});
               }
             },
           ),

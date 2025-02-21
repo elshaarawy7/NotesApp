@@ -6,18 +6,21 @@ class CustomTextField extends StatelessWidget {
   required this.hintText,
    this.maxLines = 1 , 
    this.onSaved ,
+   this.onChanged ,
    })
     : super(key: key);
 
   final String hintText;
   final int maxLines;
   final Function(String?)? onSaved;
+  final Function(String)? onChanged ;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextFormField(
+        onChanged:onChanged ,
         onSaved: onSaved,
         validator: (value) {
           if(value?.isEmpty??true){
@@ -31,7 +34,7 @@ class CustomTextField extends StatelessWidget {
         cursorColor: KPrimairyColors,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: TextStyle(color: KPrimairyColors),
+          hintStyle: const TextStyle(color: KPrimairyColors),
           border: buildBorder(),
           enabledBorder: buildBorder(),
           focusedBorder: buildBorder(KPrimairyColors),

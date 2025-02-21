@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/add_notes_cuibets/cubit/add_notes_cubit.dart';
+import 'package:notes_app/notes_cuibts/cubit/notes_cubits_cubit.dart';
 import 'package:notes_app/widgets/add_notes_Form.dart';
 
 class AddBatomSheate extends StatefulWidget {
@@ -22,6 +23,7 @@ class _AddBatomSheateState extends State<AddBatomSheate> {
           }
 
           if (state is AddNotesSuccess) {
+            BlocProvider.of<NotesCubitsCubit>(context).FeatchAllNotes();
             Navigator.pop(context);
           }
         },

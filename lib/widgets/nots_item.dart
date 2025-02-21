@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/model/note_modal.dart';
 import 'package:notes_app/views/edite_nots_view.dart';
 
 class CustemNotesItem extends StatelessWidget {
-  const CustemNotesItem({super.key});
+  const CustemNotesItem({super.key, required this.note});
+
+  final NoteModal note ;
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +20,19 @@ class CustemNotesItem extends StatelessWidget {
         height: 200,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xffFFCC80)  ,
+          color:  Color(note.color)  ,
           borderRadius: BorderRadius.circular(22),
         ), 
         child:  Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile( 
-              title: const Text("Flutter Tips" , style: TextStyle(
+              title:  Text(note.titel , style: const TextStyle(
                 color: Colors.black , 
                 fontSize: 26 ,
               
               ),), 
-               subtitle: Text("Build your carear with Elshaarawy hasan" , 
+               subtitle: Text(note.subtitle , 
                style: TextStyle(
                 color: Colors.black.withOpacity(.8) , 
                 fontSize: 20 ,
@@ -42,9 +45,9 @@ class CustemNotesItem extends StatelessWidget {
             ) , 
             
           
-         const Padding(
-            padding:  EdgeInsets.only(right: 24),
-            child: Text("May 2022" ,style: TextStyle(
+          Padding(
+            padding: const  EdgeInsets.only(right: 24),
+            child: Text( note.date ,style: const TextStyle(
                color: Colors.black , 
                fontSize: 14 , 
             

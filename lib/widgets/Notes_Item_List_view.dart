@@ -9,24 +9,27 @@ class NotesItemListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotesCubitsCubit , NotesCubitsState >(   
-    builder: (context, state){
-      List<NoteModal> notes = BlocProvider.of<NotesCubitsCubit>(context).notes??[];
-      itemCount:notes.length ;
-       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: ListView.builder(
-          padding: EdgeInsets.zero,
-          itemBuilder: (context, index) {
-            return const Padding(
-              padding:  EdgeInsets.symmetric(vertical: 4),
-              child: CustemNotesItem(),
-            );
-          }
-        ),
-      );
-    }
+    return BlocBuilder<NotesCubitsCubit, NotesCubitsState>(
+      builder: (context, state) {
+        List<NoteModal> notes = BlocProvider.of<NotesCubitsCubit>(context).notes ?? [];
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: notes.length, // ✅ المشكلة كانت هنا
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                child: CustemNotesItem(
+                  note: notes[index],
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
-    }
-        }
+  }
+}
+
      

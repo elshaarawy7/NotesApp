@@ -6,7 +6,7 @@ class Custembatton extends StatelessWidget {
     required this.onTap,
     this.isLoding = false,
   });
-  final void Function()? onTap;
+  final VoidCallback onTap;
 
   final bool isLoding;
 

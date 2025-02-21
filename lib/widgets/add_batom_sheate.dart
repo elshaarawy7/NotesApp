@@ -13,38 +13,34 @@ class AddBatomSheate extends StatefulWidget {
 class _AddBatomSheateState extends State<AddBatomSheate> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => AddNotesCubit(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6),
-          child: BlocConsumer<AddNotesCubit, AddNotesState>(
-              listener: (context, state) {
-                if (state is AddNotesFailur) {
-                  print("field is ${state.errMessage}");
-                }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      child: BlocConsumer<AddNotesCubit, AddNotesState>(
+        listener: (context, state) {
+          if (state is AddNotesFailur) {
+            print("field is ${state.errMessage}");
+          }
 
-                if (state is AddNotesSuccess) {
-                  Navigator.pop(context);
-                }
-              },
-              builder: (BuildContext context, AddNotesState state) {  
-                print("your are reapield");
-              return AbsorbPointer(
-                absorbing: state is AddNotesLoading ? true : false,
-                child:  Padding(
-                  padding: EdgeInsets.only(
-                    left: 16 ,
-                    right:  16 ,
-                    bottom:MediaQuery.of(context).viewInsets.bottom,
-                  ),
-                  child: const SingleChildScrollView(
-                    child: AddNoetForm(),
-                  )
-                )
-              );
-              }
-          )
-        ),
+          if (state is AddNotesSuccess) {
+            Navigator.pop(context);
+          }
+        },
+        builder: (BuildContext context, AddNotesState state) {
+          return AbsorbPointer(
+            absorbing: state is AddNotesLoading ? true : false,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: const SingleChildScrollView(
+                child: AddNoetForm(),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:notes_app/add_notes_cuibets/cubit/add_notes_cubit.dart';
 import 'package:notes_app/model/note_modal.dart';
 import 'package:notes_app/widgets/custemBatton.dart';
@@ -50,16 +51,21 @@ class _AddNoetFormState extends State<AddNoetForm> {
               return Custembatton(
                 isLoding: state is AddNotesLoading ? true : false,
                 onTap: () {
+                  print("Button clicked");
                   if (formkey.currentState!.validate()) {
                     formkey.currentState!.save();
+
+                    var CurentDate = DateTime.now();
+                    var FormateCurrenetDate = DateFormat.yMd().format(CurentDate);
                     var noteModal = NoteModal(
                       titel: tittle!,
                       subtitle: subtitle!,
-                      date: DateTime.now.toString(),
+                      date: FormateCurrenetDate,
                       color: Colors.blueAccent.value,
                     );
                     BlocProvider.of<AddNotesCubit>(context).addNote(noteModal);
                   } else {
+                    print("Validation failed ❌");
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
                   }

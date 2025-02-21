@@ -25,7 +25,7 @@ class NotesView extends StatelessWidget {
                   return AddBatomSheate();
                 });
           },
-          child: Icon(
+          child:  Icon(
             Icons.add,
             size: 20,
           ),

@@ -43,12 +43,15 @@ class _AddNoetFormState extends State<AddNoetForm> {
             },
             maxLines: 5,
             hintText: 'content',
-          ), 
-          ColorListView(),
+          ),
+         const SizedBox(
+            height: 32,
+          ),
+       const ColorListView(),
           const SizedBox(
             height: 50,
           ),
-          BlocBuilder<AddNotesCubit,AddNotesState>(
+          BlocBuilder<AddNotesCubit, AddNotesState>(
             builder: (context, state) {
               return Custembatton(
                 isLoding: state is AddNotesLoading ? true : false,
@@ -58,7 +61,8 @@ class _AddNoetFormState extends State<AddNoetForm> {
                     formkey.currentState!.save();
 
                     var CurentDate = DateTime.now();
-                    var FormateCurrenetDate = DateFormat.yMd().format(CurentDate);
+                    var FormateCurrenetDate =
+                        DateFormat.yMd().format(CurentDate);
                     var noteModal = NoteModal(
                       titel: tittle!,
                       subtitle: subtitle!,
